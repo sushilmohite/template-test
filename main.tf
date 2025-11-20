@@ -4,19 +4,24 @@ terraform {
 
 provider "local" {}
 
-variable "file_content" {
-    type    = string
-    default = "Hello, World!"
-}
+# variable "file_content" {
+#     type    = string
+#     default = "Hello, World!"
+# }
 
-variable "user_name" {
+# variable "user_name" {
+#     type    = string
+#     default = "User"
+# }
+
+variable "file_upload_content_in_base64" {
     type    = string
-    default = "User"
+    default = "This is a sample file upload content."
 }
 
 resource "local_file" "hello_world" {
     filename = "${path.module}/files/helloworld.txt"
-    content  = "${var.file_content} ${var.user_name}"
+    content  = base64decode(split(",", var.file_upload_content_in_base64)[1])
 }
 
 output "file_name_output" {
