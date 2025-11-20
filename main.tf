@@ -16,7 +16,7 @@ variable "user_name" {
 
 resource "local_file" "hello_world" {
     filename = "${path.module}/files/helloworld.txt"
-    content  = var.file_content + " " + var.user_name
+    content  = "${var.file_content} ${var.user_name}"
 }
 
 output "file_name_output" {
