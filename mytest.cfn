@@ -2,12 +2,22 @@
 
 AWSTemplateFormatVersion: '2010-09-09'
 Description: CloudFormation template to create an S3 bucket
+Metadata:
+    AWS::CloudFormation::Init:
+        config:
+            Region: eu-central-1
+
+Parameters:
+    S3BucketName:
+        Type: String
+        Description: Name of the S3 bucket to create
+        Default: !Sub '${AWS::StackName}-bucket'
 
 Resources:
     MyS3Bucket:
         Type: AWS::S3::Bucket
         Properties:
-            BucketName: !Sub '${AWS::StackName}-bucket'
+            BucketName: !Ref S3BucketName
 
 Outputs:
     BucketName:
