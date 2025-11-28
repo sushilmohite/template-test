@@ -14,14 +14,14 @@ provider "local" {}
 #     default = "User"
 # }
 
-variable "file_upload_content_in_base64" {
+variable "file_upload_content" {
     type    = string
     default = "This is a sample file upload content."
 }
 
 resource "local_file" "hello_world" {
     filename = "${path.module}/files/helloworld.txt"
-    content  = base64decode(split(",", var.file_upload_content_in_base64)[1])
+    content  = var.file_upload_content
 }
 
 output "file_name_output" {
