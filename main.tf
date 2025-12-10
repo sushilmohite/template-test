@@ -16,7 +16,7 @@ variable "file_upload_content" {
 }
 
 locals {
-  file_exists  = var.file_upload_content != "" && fileexists(var.file_upload_content)
+  file_exists  = var.file_upload_content != "" //&& fileexists(var.file_upload_content)
   file_content = local.file_exists ? file(var.file_upload_content) : ""
   file_base64  = local.file_exists ? filebase64(var.file_upload_content) : ""
 }
